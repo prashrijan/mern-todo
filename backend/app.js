@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import dbConnection from "./src/db/dbConfig.js";
 import userRouter from "./src/routes/userRoutes.js";
+import taskRouter from "./src/routes/taskRoute.js";
 
 const app = express();
 
@@ -29,3 +30,4 @@ try {
 }
 
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/tasks", taskRouter);

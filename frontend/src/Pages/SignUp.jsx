@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const SignUp = ({ registerUser, success }) => {
+const SignUp = ({ registerUser }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -14,8 +14,8 @@ const SignUp = ({ registerUser, success }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newUser = {
-      userName,
-      email,
+      userName: userName.trim(),
+      email: email.trim(),
       password,
     };
     registerUser(newUser);
@@ -26,16 +26,21 @@ const SignUp = ({ registerUser, success }) => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">
-          Sign Up
-        </h2>
+    <div className="flex items-center justify-center min-h-screen bg-gray-900 p-4 md:p-0">
+      <div className="w-full max-w-md p-8 bg-gray-800 rounded-lg shadow-lg">
+        <h1 className="text-3xl font-bold text-center text-white mb-2">
+          Welcome to TaskMaster!
+        </h1>
+        <p className="text-center text-gray-300 mb-6">
+          Stay organized and boost your productivity by managing your to-do
+          lists all in one place.
+        </p>
+
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
               htmlFor="username"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-gray-300 mb-2"
             >
               Username
             </label>
@@ -43,7 +48,8 @@ const SignUp = ({ registerUser, success }) => {
               type="text"
               name="username"
               id="username"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              placeholder="Enter your username"
+              className="w-full px-4 py-2 border border-gray-600 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
               required
@@ -53,7 +59,7 @@ const SignUp = ({ registerUser, success }) => {
           <div className="mb-4">
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-gray-300 mb-2"
             >
               Email
             </label>
@@ -61,7 +67,8 @@ const SignUp = ({ registerUser, success }) => {
               type="email"
               name="email"
               id="email"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              placeholder="Enter your email address"
+              className="w-full px-4 py-2 border border-gray-600 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -71,7 +78,7 @@ const SignUp = ({ registerUser, success }) => {
           <div className="mb-4 relative">
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-gray-300 mb-2"
             >
               Password
             </label>
@@ -79,7 +86,8 @@ const SignUp = ({ registerUser, success }) => {
               type={passwordVisible ? "text" : "password"}
               name="password"
               id="password"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              placeholder="Enter a strong password"
+              className="w-full px-4 py-2 border border-gray-600 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -87,7 +95,7 @@ const SignUp = ({ registerUser, success }) => {
             <button
               type="button"
               onClick={togglePasswordVisibility}
-              className="absolute inset-y-0 right-3 top-7 flex items-center justify-center text-gray-500 hover:text-gray-700"
+              className="absolute inset-y-0 right-3 top-7 flex items-center justify-center text-gray-400 hover:text-gray-200"
             >
               {passwordVisible ? (
                 <svg
@@ -115,22 +123,19 @@ const SignUp = ({ registerUser, success }) => {
 
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 px-4 rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-purple-500"
           >
             Sign Up
           </button>
         </form>
 
-        {success && (
-          <p className="text-center mt-2 text-green-500">
-            User Created Successfully.
-          </p>
-        )}
-
         <div className="text-center mt-4">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-300">
             Already have an account?{" "}
-            <Link to="/login" className="text-blue-500 hover:text-blue-700">
+            <Link
+              to="/login"
+              className="text-blue-400 hover:text-blue-600 font-medium"
+            >
               Login
             </Link>
           </p>

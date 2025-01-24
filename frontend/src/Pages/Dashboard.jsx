@@ -1,24 +1,32 @@
-// src/Dashboard.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Components/Sidebar";
 import TasksBreakdown from "../Components/TasksBreakdown";
 
-const Dashboard = () => {
+const Dashboard = ({
+  fetchTasks,
+  tasks,
+  changeStatus,
+  handleLogout,
+  handleDelete,
+}) => {
   const user = JSON.parse(localStorage.getItem("loggedInUser"));
-  const [tasks] = useState([
-    { id: 1, title: "Task 1", description: "This is the first task" },
-    { id: 2, title: "Task 2", description: "This is the second task" },
-  ]);
 
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    window.location.href = "/login";
-  };
+  useEffect(() => {
+    fetchTasks();
+  }, []);
 
   return (
     <div className="flex min-h-screen">
+      {/* Sidebar */}
       <Sidebar user={user} onLogout={handleLogout} />
-      <TasksBreakdown tasks={tasks} />
+
+      <div className="flex-1 p-4">
+        <TasksBreakdown
+          tasks={tasks}
+          changeStatus={changeStatus}
+          handleDelete={handleDelete}
+        />
+      </div>
     </div>
   );
 };

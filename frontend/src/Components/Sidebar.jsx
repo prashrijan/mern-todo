@@ -1,7 +1,6 @@
-// src/components/Sidebar.js
 import React from "react";
 import { Link } from "react-router-dom";
-import capitalizeFirstLetter from "../utils/capitalizeFirstLetter.js";
+import capitalizeFirstLetter from "../utils/capitalizeFirstLetter";
 
 const Sidebar = ({ user, onLogout }) => {
   return (
@@ -13,7 +12,7 @@ const Sidebar = ({ user, onLogout }) => {
       </h2>
       <ul className="space-y-4 mt-10 text-lg">
         <li>
-          <Link to="/tasks" className="hover:text-blue-300">
+          <Link to="/dashboard" className="hover:text-blue-300">
             Your Tasks
           </Link>
         </li>
@@ -24,7 +23,7 @@ const Sidebar = ({ user, onLogout }) => {
         </li>
       </ul>
       <button
-        className="mt-auto w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 mt-8"
+        className="mt-20 w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700"
         onClick={onLogout}
       >
         Logout

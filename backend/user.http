@@ -7,9 +7,9 @@ POST {{endpoint}}/register
 Content-Type: application/json
 
 {
-    "userName" : "Prashrijan",
-    "email" : "admin@admin.com",
-    "password" : "admin"
+    "userName" : "admin",
+    "email" : "test@test.com",
+    "password" : "test"
 }
 
 ###
